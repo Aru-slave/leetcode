@@ -1,25 +1,25 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length())
+            return false;
 
-       if(s.length() != t.length())  return false;
+        char[] sArr = new char[s.length()];
+        char[] tArr = new char[t.length()];
 
-       HashMap<Character, Integer> map = new HashMap<>();
-       for(int i=0; i<s.length(); i++){
-           map.put(s.charAt(i), map.getOrDefault(s.charAt(i),0) +1);
-       }
+        for(int i = 0 ; i < s.length() ;i++){
+            sArr[i] = s.charAt(i);
+        }
 
-       for(int i=0; i<t.length(); i++){
-           if(!map.containsKey(t.charAt(i)))
-           return false;
+        for(int i = 0 ; i < t.length() ;i++){
+            tArr[i] = t.charAt(i);
+        }
 
-           if(map.get(t.charAt(i)) == 1)
-           map.remove(t.charAt(i));
-           else
-           map.put(t.charAt(i), map.get(t.charAt(i)) -1);
-       }
+        Arrays.sort(sArr);
+        Arrays.sort(tArr);
 
-       if(map.size() == 0)
-       return true;
-       else return false;
+        if(Arrays.equals(sArr, tArr))
+            return true;
+        else
+            return false;
     }
 }
