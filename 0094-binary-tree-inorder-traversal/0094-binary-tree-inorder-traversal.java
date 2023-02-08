@@ -25,7 +25,7 @@ class Solution {
             dfs(root.left,list);//왼쪽에 노드가 있으면 다시 탐색
             list.add(root.val);//이 밑의 depth에 왼쪽에 노드가 없으면 다시 루트로 돌아와서
             //리스트에 추가
-            dfs(root.right,list);//
+            dfs(root.right,list);//오른쪽 탐색
         }
     }
 }
