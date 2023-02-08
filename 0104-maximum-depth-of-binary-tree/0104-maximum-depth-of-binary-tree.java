@@ -14,13 +14,18 @@
  * }
  */
 class Solution {
+    public int max = 0;
     public int maxDepth(TreeNode root) {
-        // Base Condition
-        if(root == null) return 0;
-        // Hypothesis
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
-        // Induction
-        return Math.max(left, right) + 1;
+        dfs(0,root);
+        return max;
     }
+    public void dfs(int count,TreeNode root){
+        if(root == null){
+            max = Math.max(count,max);
+            return;
+        }
+        dfs(count+1,root.left);
+        dfs(count+1,root.right);
+    }
+
 }
