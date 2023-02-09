@@ -17,24 +17,23 @@ class Solution {
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if(root==null)  return false;
 
-        Deque<TreeNode> stack = new ArrayDeque<>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);
 
         while(!stack.isEmpty()) {
-            TreeNode curr = stack.pop();
+            TreeNode currentNode = stack.pop();
 
-            if(curr.val == targetSum && curr.left==null && curr.right==null) {
+            if(currentNode.val == targetSum && currentNode.left==null && currentNode.right==null) {
                 return true;
             }
-
-            if(curr.left!=null) {
-                curr.left.val += curr.val;
-                stack.push(curr.left);
+            if(currentNode.left!=null) {
+                currentNode.left.val += currentNode.val;
+                stack.push(currentNode.left);
             }
 
-            if(curr.right!=null) {
-                curr.right.val += curr.val;
-                stack.push(curr.right);
+            if(currentNode.right!=null) {
+                currentNode.right.val += currentNode.val;
+                stack.push(currentNode.right);
             }
         }
         return false;
