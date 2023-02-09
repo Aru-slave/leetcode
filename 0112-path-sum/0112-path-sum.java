@@ -27,12 +27,12 @@ class Solution {
                 return true;
             }
             if(currentNode.left!=null) {
-                currentNode.left.val += currentNode.val;
+                currentNode.left.val =  currentNode.left.val + currentNode.val;
                 stack.push(currentNode.left);
             }
 
             if(currentNode.right!=null) {
-                currentNode.right.val += currentNode.val;
+                currentNode.right.val = currentNode.right.val + currentNode.val;
                 stack.push(currentNode.right);
             }
         }
