@@ -22,7 +22,7 @@ class Solution {
         return isBalanced(root.left) && isBalanced(root.right);
     }
 
-        public static int dfs(int depth,TreeNode root){
+        public int dfs(int depth,TreeNode root){
         if(root == null){
            return depth;
         }
