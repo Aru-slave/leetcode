@@ -25,7 +25,7 @@ class Solution {
         if(path == "")
             path = String.valueOf(root.val);
         else path = path + "->" + root.val;
-         if(root.left == null && root.right == null) list.add(path);
+        if(root.left == null && root.right == null) list.add(path);
         dfs(list,root.left,path);
         dfs(list,root.right,path);
         
