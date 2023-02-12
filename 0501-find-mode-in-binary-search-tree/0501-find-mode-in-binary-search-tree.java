@@ -46,12 +46,13 @@ class Solution {
         for(int i = 0; i < list.size(); i++){
             if(map.get(list.get(i)) > max){
              max = map.get(list.get(i));
+             ans.clear();
+             ans.add(list.get(i));
             }
-        }
-        for(int i = 0; i < list.size(); i++){
-            if(map.get(list.get(i)) == max)
+            else if(max == map.get(list.get(i)))
                 ans.add(list.get(i));
         }
+    
         return ans.stream().mapToInt(Integer::intValue).toArray();
     }
 }
