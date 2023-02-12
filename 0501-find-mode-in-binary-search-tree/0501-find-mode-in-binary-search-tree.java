@@ -14,45 +14,33 @@
  * }
  */
 class Solution {
+    TreeNode pre;
+    int curCount = 1;
+    int maxCount = 0;
     public int[] findMode(TreeNode root) {
-        if(root == null) return new int[0];
-        List<Integer> list = new LinkedList<>();
-        Map<Integer,Integer> map = new HashMap<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        List<Integer> ans = new LinkedList<>();
-        queue.add(root);
-        int max = 0;
-        while(!queue.isEmpty()){
-            int n = queue.size();
-   
-            for(int i = 0; i < n; i++){
-            TreeNode cur = queue.poll();
-            if(map.get(cur.val) == null){
-                map.put(cur.val,1);
-                list.add(cur.val);
-            }
-            else map.replace(cur.val,map.get(cur.val) + 1);
-                if(cur.left != null){
-                    queue.add(cur.left);
-                }
-                if(cur.right != null){
-                    queue.add(cur.right);
-                }
-            }
-
-
+      List<Integer> list = new LinkedList<>();
+        dfs(root,list);
+        return list.stream().mapToInt(Integer::intValue).toArray();
+}
+    public void dfs(TreeNode root, List<Integer> list){
+        if(root == null) return;
+       dfs(root.left,list);
+        if(pre != null){
+        if(pre.val == root.val)
+                curCount++;
+            else curCount = 1;
         }
 
-        for(int i = 0; i < list.size(); i++){
-            if(map.get(list.get(i)) > max){
-             max = map.get(list.get(i));
-             ans.clear();
-             ans.add(list.get(i));
-            }
-            else if(max == map.get(list.get(i)))
-                ans.add(list.get(i));
+        
+        if(curCount > maxCount){
+            maxCount = curCount;
+            list.clear();
+            list.add(root.val);
         }
-    
-        return ans.stream().mapToInt(Integer::intValue).toArray();
+        else if (curCount == maxCount && !list.contains(root.val))
+             list.add(root.val);
+        pre = root;
+        
+        dfs(root.right,list);
     }
 }
