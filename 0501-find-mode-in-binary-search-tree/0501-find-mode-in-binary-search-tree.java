@@ -24,7 +24,7 @@ class Solution {
 }
     public void dfs(TreeNode root, List<Integer> list){
         if(root == null) return;
-       dfs(root.left,list);
+        dfs(root.left,list);
         if(pre != null){
         if(pre.val == root.val)
                 curCount++;
@@ -37,7 +37,7 @@ class Solution {
             list.clear();
             list.add(root.val);
         }
-        else if (curCount == maxCount && !list.contains(root.val))
+        else if (curCount == maxCount)
              list.add(root.val);
         pre = root;
         
