@@ -9,6 +9,6 @@ class Solution {
         for(int i = 2; i < nums.length; i++){
             nums[i] = nums[i-1] + nums[i-2];
         }
-        return nums[n-1];
+        return nums[nums.length-1];
     }
 }
