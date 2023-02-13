@@ -4,14 +4,8 @@ class Solution {
         int min = prices[0];
         for(int i = 1; i < prices.length; i++)
         {
-            if(min > prices[i])
-            {
-                min = prices[i];//작은 값이 나오면 지불 값 변경
-            }
-            else if (profit < (prices[i] - min))
-            {
-                profit = prices[i] - min; 
-            }
+            min = Math.min(min,prices[i]);
+            profit = Math.max(profit,prices[i] - min);
         }
         return profit;
     }
