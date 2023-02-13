@@ -1,24 +1,16 @@
-import java.util.Arrays;
-
 class Solution {
     public long pickGifts(int[] gifts, int k) {
+        long res=0;
         Arrays.sort(gifts);
-        for(int i=1; i<=k; i++)
-        {
-            int x=gifts.length-1;
-            if(gifts[x]==1)
-            {
-                break;
-            }
-            int y=(int)(Math.sqrt(gifts[x]));
-            gifts[x]=y;
-            Arrays.sort(gifts);
+        // [25,64,9,4,100]  3 5 8 9  
+        PriorityQueue<Integer> p=new PriorityQueue<>(Collections.reverseOrder());
+        for(int i:gifts)p.add(i);
+        while(k!=0){
+                int v=(int)Math.sqrt(p.poll());
+                p.add(v);
+                k--;
         }
-        long result=0;
-        for(int i = 0; i< gifts.length; i++)
-        {
-            result += gifts[i];
-        }
-        return result;
+        for(int i:p)res+=i;
+        return res;
     }
 }
