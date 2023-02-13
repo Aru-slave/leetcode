@@ -5,7 +5,6 @@ import java.util.PriorityQueue;
 class Solution {
     public int minimumOperations(int[] nums) {
         int count = 0;
-        Arrays.sort(nums);
         if(nums.length == 0) return 0;
         PriorityQueue<Integer> p = new PriorityQueue<>();
         for (int i : nums) {
