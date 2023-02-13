@@ -15,7 +15,6 @@ class Solution {
     StringBuilder sb = new StringBuilder();
         num = value;
         while(num > 0){
-            int cur = num % 10;
             if((num % 10) % 2 == 0)
                 sb.insert(0, even.poll());
             else
@@ -24,5 +23,5 @@ class Solution {
         }
         return Integer.parseInt(sb.toString());
         
-    }
+    }                                       
 }
