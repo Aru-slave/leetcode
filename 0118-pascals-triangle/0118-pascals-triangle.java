@@ -10,7 +10,7 @@ class Solution {
 
         for(int i = 1; i < numRows; i++){
             list = new LinkedList<>();
-     
+
             for(int j = 0; j < i; j++){
                 if(j == 0){
                     list.add(1);
