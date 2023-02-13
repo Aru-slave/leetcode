@@ -6,11 +6,11 @@ class Solution {
         {
             if(price > prices[i])
             {
-                price = prices[i];
+                price = prices[i];//작은 값이 나오면 지불 값 변경
             }
             else if (profit < (prices[i] - price))
             {
-                profit = prices[i] - price;
+                profit = prices[i] - price; 
             }
         }
         return profit;
