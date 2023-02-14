@@ -4,28 +4,28 @@ class Solution {
         if(s.length() == 1)
             return 1;
         Map<Character,Integer> map = new HashMap<>();
-        List<Character> list = new LinkedList<>();
+        int count = 0;
         int ans = 0;
         for(int i = 0; i < s.length(); i++){
             if(map.get(s.charAt(i)) == null){
                 map.put(s.charAt(i),1);
-                list.add(s.charAt(i));
             }
             else {
                 map.replace(s.charAt(i),map.get(s.charAt(i))+1);
             }
         }
+        for(int i : map.values()){
+            if(i % 2 == 0){
+                ans = ans + i;
+            }
+            else {
+                ans = ans + i - 1;
+                count = 1;
+            }
+        }
+        return ans + count;
             
-            for(int i = 0; i < list.size(); i++){
-                ans = ans + (map.get(list.get(i))/2)*2 ;
-                if(map.get(list.get(i))%2 == 0){
-                    list.remove(i);
-                    i--;
-                }
-                }
-        if(list.size() == 0)
-            return ans;
-        else return ans+1;
+
   
     
         }
