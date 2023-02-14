@@ -13,6 +13,8 @@ class Solution {
             if (i == curEnd) {
                 answer++;
                 curEnd = curFar;
+                if(curEnd > nums.length -1)
+                    return answer;
             }
         }
         
