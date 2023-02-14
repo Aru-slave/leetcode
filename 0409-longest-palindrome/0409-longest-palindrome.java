@@ -7,12 +7,7 @@ class Solution {
         int count = 0;
         int ans = 0;
         for(int i = 0; i < s.length(); i++){
-            if(map.get(s.charAt(i)) == null){
-                map.put(s.charAt(i),1);
-            }
-            else {
-                map.replace(s.charAt(i),map.get(s.charAt(i))+1);
-            }
+       map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
         }
         for(int i : map.values()){
             if(i % 2 == 0){
