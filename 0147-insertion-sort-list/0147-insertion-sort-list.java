@@ -23,7 +23,7 @@ public ListNode insertionSortList(ListNode head) {
             sortedHead = temp;
         }
         // new val is greater than the tail, just insert at the back
-        else if (temp.val >= sortedTail.val)
+        else if (temp.val > sortedTail.val)
         {
             sortedTail.next = temp;
             sortedTail = sortedTail.next;
