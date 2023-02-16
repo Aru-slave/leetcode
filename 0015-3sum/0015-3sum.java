@@ -13,10 +13,17 @@ class Solution {
                 int val = nums[k] + nums[j];
                 if(sum > val) k++;
                 if(sum < val) j--;
-                if(sum == val) set.add(Arrays.asList(nums[i],nums[k++],nums[j--]));
+                if(sum == val) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[k++]);
+                    list.add(nums[j--]);
+                    set.add(list);
             }
             
         }
-        return new ArrayList<>(set);
+       
     }
+         return new ArrayList<>(set);
+}
 }
