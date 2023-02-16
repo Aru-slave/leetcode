@@ -1,6 +1,6 @@
 class Solution {
     public ListNode insertionSortList(ListNode head) {
-        if(head == null) return head;
+        if(head == null || head.next == null) return head;
         ListNode current = head.next;
         ListNode pre = head;
         while(current !=null){
