@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 class Solution {
     public ListNode insertionSortList(ListNode head) {
@@ -12,11 +9,12 @@ class Solution {
             list.add(temp.val);
             temp = temp.next;
         }
-        Collections.sort(list);
+        int [] arr = list.stream().mapToInt(Integer::intValue).toArray();
+        Arrays.sort(arr);
         temp = head;
         int i = 0;
         while(temp != null){
-            temp.val = list.get(i);
+            temp.val = arr[i];
             temp = temp.next;
             i++;
         }
