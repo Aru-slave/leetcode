@@ -21,6 +21,6 @@ class Solution {
                 merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
             }
         }
-        return merged.toArray(new int[1][merged.size()]);
+        return merged.toArray(new int[0][merged.size()]);
     }
 }
