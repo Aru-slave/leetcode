@@ -1,65 +1,47 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
 class Solution {
-    public int myAtoi(String s) {
-        Queue<Character> queue = new LinkedList<>();
-        boolean plus = true;
-        boolean check = false;
-        boolean zero = false;
-        Integer ans = 0;
-        int count = 0;
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == ' '){
-            if(!queue.isEmpty() || zero|| count == 1) break;
-                continue;
-            }
-            if(s.charAt(i) == '.'){
-            if(!queue.isEmpty() || zero) break;
-                check = true;
-                continue;
-            }
-
-            if(queue.isEmpty() && s.charAt(i) == '0'){
-                 zero = true;
-                 continue;
-            }
-               
-            if(s.charAt(i) == '-'|| s.charAt(i) == '+'){
-                count++;
-                 if(!queue.isEmpty()|| count > 1 || zero) break;
-                 
-                 if(s.charAt(i) == '-'){
-                    plus = false;
-                     continue;
-                }
-                continue;
-            }
-         
-            if((s.charAt(i) >= 'a' && s.charAt(i) <= 'z')||(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z')){
-                check = true;
-            if(!queue.isEmpty() || zero) break;
-                continue;
-
-            }
-            if(!check)
-            queue.add(s.charAt(i));
+    public int myAtoi(String str) {
+        
+        final int len = str.length();
+        
+        if(len == 0){
+            return 0;
         }
-        StringBuilder sb  = new StringBuilder();
-        while(!queue.isEmpty()){
-            sb.append(queue.poll());
+        
+        int index = 0;
+        while(index < len && str.charAt(index) == ' '){
+            index++;
         }
-        if(sb.length() == 0) return 0;
-        try { 
-            if (plus) {
-                 ans = Integer.parseInt(sb.toString());
-            } else ans = -1 * Integer.parseInt(sb.toString());
+        
+        if(index == len){
+            return 0;
         }
-        catch (Exception o){
-            if(plus) return Integer.MAX_VALUE;
-            else return Integer.MIN_VALUE;
+        
+        char ch;
+        boolean isNegative = (ch = str.charAt(index)) ==  '-';
+        
+        if(isNegative || ch == '+'){
+            ++index;
         }
-        return ans;
+            
+        final int maxLimit = Integer.MAX_VALUE / 10;
+        int result = 0;
+        while(index < len && isDigit(ch = str.charAt(index))){
+            
+            int digit = ch - '0';
+            
+            if(result > maxLimit || (result == maxLimit && digit > 7)){
+                return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            }
+            
+            result = (result * 10) + digit;
+            
+            ++index;
+        }
+        
+        return isNegative ? -result : result;
+    }
+    
+    private boolean isDigit(char ch){
+        return ch >= '0' && ch <= '9';
     }
 }
