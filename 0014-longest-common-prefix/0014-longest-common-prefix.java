@@ -10,12 +10,12 @@ class Solution {
         Arrays.sort(strs);
         String first = strs[0];
         String last = strs[strs.length - 1];
-        String ans = "";
+        int count = 0;
         for(int i = 0; i < first.length(); i++){
             if(first.charAt(i) != last.charAt(i) || i > last.length() - 1)
-                return ans;
-            ans = ans + first.charAt(i);
+                return first.substring(0,count);
+            count ++;
         }
-        return ans;
+        return first.substring(0,count);
 }
 }
