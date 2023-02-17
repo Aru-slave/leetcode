@@ -13,7 +13,7 @@ class Solution {
         if(n * 2 == str.length()) {
             ans.add(str);
             return;
-        }
+        }   
             dfs(n,str + '(',left+1,right);
             dfs(n,str + ')',left,right+1);
         }
