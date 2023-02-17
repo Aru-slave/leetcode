@@ -1,51 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public String convert(String s, int numRows) {
-        if (numRows == 1) {
-            return s;
-        }
-        
-        int n = s.length();
-        int sections = (int) Math.ceil(n / (2 * numRows - 2.0));
-        int numCols = sections * (numRows - 1);
-        
-        char[][] matrix = new char[numRows][numCols];
-        for (char[] row: matrix) {
-            Arrays.fill(row, ' ');
-        }
-        
-        int currRow = 0, currCol = 0;
-        int currStringIndex = 0;
-        
-        // Iterate in zig-zag pattern on matrix and fill it with string characters.
-        while (currStringIndex < n) {
-            // Move down.
-            while (currRow < numRows && currStringIndex < n) {
-                matrix[currRow][currCol] = s.charAt(currStringIndex);
-                currRow++;
-                currStringIndex++;
-            }
-            
-            currRow -= 2;
-            currCol++;
-            
-            // Move up (with moving right also).
-            while (currRow > 0 && currCol < numCols && currStringIndex < n) {
-                matrix[currRow][currCol] = s.charAt(currStringIndex);
-                currRow--;
-                currCol++;
-                currStringIndex++;
-            }
-        }
-        
-        StringBuilder answer = new StringBuilder();
-        for (char[] row: matrix) {
-            for (char character: row) {
-                if (character != ' ') {
-                    answer.append(character);
+        Map<Integer,String> map = new HashMap<>();
+        boolean check = false;
+        int index = 0;
+        StringBuilder sb;
+        for(int i = 0; i < s.length(); i++){
+            if(!check){
+                if(map.get(index) == null) {
+                    map.put(index,String.valueOf(s.charAt(i)));
+                    index++;
+                    if(index == numRows - 1) check = true;
+                }
+                else {
+                    sb = new StringBuilder(map.get(index));
+                    sb.append(s.charAt(i));
+                    map.put(index,sb.toString());
+                    index++;
+                    if(index == numRows - 1) check = true;
                 }
             }
-        }
+             else  {
+                    if(map.get(index) == null) {
+                        map.put(index,String.valueOf(s.charAt(i)));
+                        index--;
+                        if(index == 0) check = false;
+                    }
+                    else {
+                        sb = new StringBuilder(map.get(index));
+                        sb.append(s.charAt(i));
+                        map.put(index,sb.toString());
+                        index--;
+                        if(index == 0) check = false;
+                    }
+                
+            }
         
-        return answer.toString();
     }
+    sb = new StringBuilder(map.get(0));
+        for(int i = 1; i < map.size(); i++){
+        sb.append(map.get(i));
+        }
+        return sb.toString();
+}
 }
