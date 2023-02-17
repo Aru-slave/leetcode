@@ -4,7 +4,6 @@ import java.util.Stack;
 
 class Solution {
     public int myAtoi(String s) {
-        s = s.toLowerCase();
         Queue<Character> queue = new LinkedList<>();
         boolean plus = true;
         boolean check = false;
@@ -38,7 +37,7 @@ class Solution {
                 continue;
             }
          
-            if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+            if((s.charAt(i) >= 'a' && s.charAt(i) <= 'z')||(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z' )){
                 check = true;
             if(!queue.isEmpty() || zero) break;
                 continue;
