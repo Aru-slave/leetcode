@@ -1,14 +1,20 @@
+import java.util.LinkedList;
+import java.util.List;
+
 class Solution {
+    List<String> ans = new LinkedList<>();
     public List<String> generateParenthesis(int n) {
-        List<String> ans = new ArrayList();
-        if (n == 0) {
-            ans.add("");
-        } else {
-            for (int c = 0; c < n; ++c)
-                for (String left: generateParenthesis(c))
-                    for (String right: generateParenthesis(n-1-c))
-                        ans.add("(" + left + ")" + right);
-        }
+        if ( n == 0) return ans;
+        dfs(n,"(",1,0);
         return ans;
     }
-}
+    public void dfs(int n, String str,int left,int right){
+        if(left > n || right > n || right > left) return;
+        if(n * 2 == str.length()) {
+            ans.add(str);
+            return;
+        }
+            dfs(n,str + '(',left+1,right);
+            dfs(n,str + ')',left,right+1);
+        }
+    }
