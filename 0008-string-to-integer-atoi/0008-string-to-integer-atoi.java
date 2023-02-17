@@ -8,23 +8,17 @@ class Solution {
         Queue<Character> queue = new LinkedList<>();
         boolean plus = true;
         boolean check = false;
-        boolean lastCheck = false;
         boolean zero = false;
         Integer ans = 0;
         int count = 0;
         for(int i = 0; i < s.length(); i++){
             if(s.charAt(i) == ' '){
-            if(count == 1) break;
-            if(!queue.isEmpty())
-                    break;
-                 if(zero) break;
+            if(!queue.isEmpty() || zero|| count == 1) break;
                 continue;
             }
             if(s.charAt(i) == '.'){
-            if(!queue.isEmpty())
-                    break;
+            if(!queue.isEmpty() || zero) break;
                 check = true;
-            if(zero) break;
                 continue;
             }
 
@@ -35,24 +29,18 @@ class Solution {
                
             if(s.charAt(i) == '-'|| s.charAt(i) == '+'){
                 count++;
-                 if(zero) break;
-                if(count > 1) break;
-                 if(!queue.isEmpty())
-                    break;
-                if(s.charAt(i) == '-'){
+                 if(!queue.isEmpty()|| count > 1 || zero) break;
+                 
+                 if(s.charAt(i) == '-'){
                     plus = false;
-               
-              
-                  continue;
+                     continue;
                 }
                 continue;
             }
          
             if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
                 check = true;
-                if(!queue.isEmpty())
-                    break;
-                 if(zero) break;
+            if(!queue.isEmpty() || zero) break;
                 continue;
 
             }
