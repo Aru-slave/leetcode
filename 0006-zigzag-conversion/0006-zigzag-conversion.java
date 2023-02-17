@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public String convert(String s, int numRows) {
         Map<Integer,StringBuilder> map = new HashMap<>();
@@ -31,9 +34,9 @@ class Solution {
             }
 
         }
-        StringBuilder sb = new StringBuilder(map.get(0));
-        for(int i = 1; i < map.size(); i++){
-            sb.append(map.get(i));
+        StringBuilder sb = new StringBuilder();
+        for(StringBuilder str : map.values()){
+            sb.append(str);
         }
         return sb.toString();
     }
