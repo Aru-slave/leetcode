@@ -2,26 +2,24 @@
 
 class Solution {
     public boolean isValid(String s) {
-        if(s.charAt(0) == ')'||s.charAt(0) == '}'||s.charAt(0) == ']')
-            return false;
-        Stack<Character> stack = new Stack();
-        Map<Character,Character> map = new HashMap<>();
-        map.put('(',')');
-        map.put('{','}');
-        map.put('[',']');
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == '('||s.charAt(i) == '{'||s.charAt(i) == '['){
-                stack.add(s.charAt(i));
-                continue;
+       Stack<Character> stack = new Stack <Character>();
+        Map<Character, Character> map = new HashMap<>();
+        map.put('(', ')');
+        map.put('[', ']');
+        map.put('{', '}');
+    
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                stack.push(map.get(c));
+            } else if (map.containsValue(c)) {
+                if (stack.isEmpty() || stack.pop() != c) {
+                    return false;
+                }
             }
-            if(!stack.isEmpty()){
-                if(s.charAt(i) == map.get(stack.peek()))
-                    stack.pop();
-                else return false;
-            }
-            else if(s.charAt(i) == ')'||s.charAt(i) == '}'||s.charAt(i) == ']')
-            return false;
         }
-        return stack.isEmpty();
+        return stack.size() == 0;
+
+
     }
 }
