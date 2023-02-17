@@ -14,7 +14,9 @@ class Solution {
             ans.add(str);
             return;
         }   
-            dfs(n,str + '(',left+1,right);
-            dfs(n,str + ')',left,right+1);
+            
+        dfs(n,str + '(',left+1,right);
+        dfs(n,str + ')',left,right+1);
+            
         }
     }
