@@ -11,7 +11,7 @@ class Solution {
             String exam2 = b + a;
             return exam2.compareTo(exam1);
         });
-        if(Objects.equals(arr[0], "0")) return "0";
+        if(arr[0].equals("0")) return "0";
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < arr.length; i++){
             sb.append(arr[i]);
