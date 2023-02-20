@@ -1,17 +1,12 @@
-import java.util.*;
-
 class Solution {
- public String entityParser(String text) {
-        if (text == null || text.length() == 0) {
-            return "";
-        }
-        Map<String, String> map = 
-            Map.of("&quot;", "\"", "&apos;", "'", 
-                   "&gt;", ">", 
-                   "&lt;", "<", "&frasl;", "/");
-        for (String key : map.keySet()) {
-            text = text.replaceAll(key, map.get(key));
-        }
-        return text.replaceAll("&amp;", "&");  // "&" must be put in last;
+    public String entityParser(String text) {
+        text = text.replace("&gt;", ">");
+        text = text.replace("&quot;", "\"");
+        text = text.replace("&apos;", "'");
+        text = text.replace("&lt;", "<");
+        text = text.replace("&frasl;", "/");
+        text = text.replace("&amp;", "&");
+        
+        return text;
     }
 }
