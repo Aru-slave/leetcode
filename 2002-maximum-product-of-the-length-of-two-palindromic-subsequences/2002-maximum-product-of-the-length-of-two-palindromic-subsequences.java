@@ -1,40 +1,19 @@
 class Solution {
-    
-    int max = 0;
     public int maxProduct(String s) {
-        
-        char[] c = s.toCharArray();
-        dfs(c, 0, "", "");
-        
-        return max;
+        return dfs(s.toCharArray(),"","",0,0);
     }
     
-    public void dfs(char[] c, int i, String s1, String s2){
-        
-        if(i >= c.length){
-            
-            if(isPalin(s1) && isPalin(s2))
-                max = Math.max(max, s1.length()*s2.length());
-            return;
+    public int dfs(char[] arr,String s,String p,int pos,int max){
+        if(pos == arr.length){
+            if(isValid(s) && isValid(p))max = Math.max(max,s.length() * p.length());
+            return max;
         }
-        
-        dfs(c, i+1, s1+c[i], s2);
-        dfs(c, i+1, s1, s2+c[i]);
-        dfs(c, i+1, s1, s2);
+        return Math.max(dfs(arr,s + arr[pos],p,pos + 1,max),Math.max(dfs(arr,s,p + arr[pos],pos+1,max),dfs(arr,s,p,pos+1,max)));
     }
     
-     public boolean isPalin(String str){
- 
-        int i = 0, j = str.length() - 1;
- 
-        while (i < j) {
- 
-            if (str.charAt(i) != str.charAt(j))
-                return false;
-            i++;
-            j--;
-        }
- 
+    public boolean isValid(String s){
+        int i = 0,j = s.length()-1;
+        while(i < j)if(s.charAt(i++) != s.charAt(j--))return false;
         return true;
     }
 }
