@@ -1,16 +1,25 @@
 class Solution {
-    int result = 0;
+    int sum=0;
+
     public int findTilt(TreeNode root) {
-        postOrder(root);
-        return result;
-    }
-    public int postOrder(TreeNode root){
-        if(root == null){
+        if(root==null)
             return 0;
-        }
-        int left = postOrder(root.left);
-        int right = postOrder(root.right);
-        result = result + Math.abs(left-right);
-        return left + right + root.val;
+        dfs(root);
+        
+        return sum;
+    }
+    
+    private int dfs(TreeNode root){
+        if(root==null)
+            return 0;
+        
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        
+        sum = sum + Math.abs(left-right);
+        
+        root.val = root.val + left+right;  
+        
+        return root.val;
     }
 }
