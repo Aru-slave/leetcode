@@ -22,12 +22,11 @@ class Solution {
     public List<Integer> preorder(Node root) {
         
         if(root == null) return list;
-        dfs(root);
+        dfs(root,list);
         return list;
         
     }
-    public void dfs(Node root){
-        
+    public void dfs(Node root,List<Integer> list){
         list.add(root.val);
         for(Node n : root.children){
             preorder(n);
