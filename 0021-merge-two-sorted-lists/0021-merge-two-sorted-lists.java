@@ -23,8 +23,8 @@ class Solution {
             }
             cur = cur.next;
         }
-
-        cur.next = l1 == null ? l2 : l1;
+        if(l1 == null) cur.next = l2;
+        else cur.next = l1;
         return prehead.next;
     }
 
