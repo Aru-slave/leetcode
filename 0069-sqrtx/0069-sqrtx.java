@@ -1,21 +1,17 @@
 class Solution {
-    public int mySqrt(int x) {
-    long start = 1;
-    long end = x;
-    long mid = (start + end) / 2;
-    while(start <= end){
-        
-        if(mid*mid == x)
-           break;
-        else if(mid*mid > x){
-            end = mid - 1;
+    public int mySqrt(int n) {
+        // By Binary Approach
+        long st = 1 , end = n ,  mid = (st + end) / 2;
+        while(st <= end) {
+            if(mid * mid == n) {
+                break;
+            }else if (mid * mid > n) {
+                end = mid - 1;
+            }else {
+                st = mid + 1;
+            }
+            mid = (st + end) / 2;
         }
-        else {
-            start = mid + 1;
-        }
-        mid = (start + end) / 2;
-        
-    }
         return (int)mid;
-}
+    }
 }
