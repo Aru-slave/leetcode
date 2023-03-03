@@ -11,13 +11,16 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
         List<Integer> list = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
         while(head != null){
             list.add(head.val);
+            stack.add(head.val);
             head = head.next;
         }
-        for(int i = list.size() - 1, j = 0; i >=list.size()/2; i--,j++){
-            if(list.get(i) != list.get(j)) return false;
-             
+        while(!stack.isEmpty()){
+            if(stack.pop() != list.get(index)) return false;
+            index++;
         }
         return true;
     }
