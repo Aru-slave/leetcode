@@ -1,49 +1,27 @@
-class Solution { 
-    public ListNode reverseList(ListNode head) {
-
-       ListNode cur=head;
-       ListNode prev=null;
-
-      while(cur!=null){
-          ListNode temp=cur.next;
-          cur.next=prev;
-          
-          prev=cur;
-          cur=temp;
-         
-      }
-return prev;
-
-        
-    }
-    
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
     public boolean isPalindrome(ListNode head) {
-      
-        ListNode slow=head;
-        ListNode fast=head;
-        
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
+        List<Integer> list = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
+        while(head != null){
+            list.add(head.val);
+            stack.add(head.val);
+            head = head.next;
         }
-        
-        if(fast!=null){
-            slow=slow.next;
-        }
-        
-        slow=reverseList(slow);
-        fast=head;
-        
-        while(slow!=null){
-            if(slow.val!=fast.val){
-                return false;
-            }
-            slow=slow.next;
-            fast=fast.next;
+        while(!stack.isEmpty()){
+            if(stack.pop() != list.get(index)) return false;
+            index++;
         }
         return true;
-        
-        
-        
     }
 }
